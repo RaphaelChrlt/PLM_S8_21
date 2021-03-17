@@ -1,0 +1,44 @@
+﻿Pour récuperer la Part:
+
+     Set objPart = CATIA.ActiveDocument.Part
+
+
+Pour recuperer les parametres de la Part:
+
+        Set params = objPart .Parameters		'Collection de tous les parametres
+    
+	' Afficher tous les parametres et leurs valeurs
+	 Dim i_limite as integer
+         i_limite = params.Count    'Nb de parametres
+    
+        For i = 1 To i_limite
+	    set oParametre=params.Item(i)  'i_eme Parametre
+            par_name = oParametre.name     'son nom
+	    par_value= oParametre.ValueAsString   'sa valeur    
+	    Msgbox  "Parametre num " & i_limite & " nom: " &  par_name & " valeur: " & par_value
+        Next
+    
+      'Pour changer la valeur d'un parametre    parametre.ValuateFromString("300mm") par ex
+
+      'Mise a jour de la part:
+
+       objPart.update
+**************
+	Set oProdDoc = CATIA.ActiveDocument	'document ouvert dans Catia
+	Set oProdRoot = oProdDoc.Product		'Produit racine
+        Set params = oProdRoot.Parameters		'Collection de tous les parametres
+    
+	Dim i_limite as integer
+         i_limite = params.Count    'Nb de parametres
+    
+        For i = 1 To i_limite
+	    set oParametre=params.Item(i)  'i_eme Parametre
+            par_name = oParametre.name     'son nom
+	    par_value= oParametre.ValueAsString   'sa valeur    
+	    Msgbox  "Parametre num " & i_limite & " nom: " &  par_name & " valeur: " & par_value
+        Next
+    
+	oProdRoot.update
+
+      'Pour changer la valeur d'un parametre    parametre.ValuateFromString("300mm") par ex
+	  
